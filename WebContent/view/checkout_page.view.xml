@@ -1,0 +1,206 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:layout="sap.ui.layout" controllerName="ekart.controller.checkout_page"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="BILLING PAGE" showNavButton="true" navButtonPress="onNavBack">
+		<!-- <Page showNavButton="true" navButtonPress="onNavBack"></Page> -->
+		<content>
+			<Panel class="sapMShellGlobalOuterBackground">
+
+				<IconTabBar expanded="true" id="idIconTabBar" select="handleIconTabBarSelect"
+					class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter icon="sap-icon://cart-3" iconColor="Positive"
+							design="Horizontal" text="Shopping Cart" key="Content">
+							<Table class="sapUiResponsiveMargin" delete="onDelete" growing="true" growingScrollToLoad="true" id="shoppingCartTable"
+				mode="Delete" items="{ob>/results1}"  updateFinished="onUpdateFinished" width="auto" visible="true" noDataText="No Items In cart.">
+				<columns>
+				
+					<Column hAlign="Left" id="pictureColumn" minScreenWidth="Tablet" width="13%">
+						<header><Label id="itemsLbl" text="Image" visible="{= ${device>/system/phone}}"/></header>
+					</Column>
+					
+					<Column hAlign="Left" id="availabilityColumn" width="{= ${device>/system/phone}? '35%' : '23%'}">
+						<header><Label id="availabilityLbl" text="Product Name" visible="{= ${device>/system/phone}}"/></header>
+					</Column>
+				
+					<Column demandPopin="true" hAlign="Right" id="quantityColumn" minScreenWidth="Tablet" width="11%">
+						<header><Label id="quantityLbl" text="Quanity"/></header>
+					</Column>
+					
+					<Column demandPopin="true" hAlign="Right" id="priceColumn" minScreenWidth="Tablet" popinDisplay="Inline" width="23%">
+						<header><Label id="priceLbl" text="Unit Price"/></header>
+					</Column>
+					
+					<Column hAlign="Right" width="{= ${device>/system/phone}? '35%' : '23%'}">
+						<footer>
+							<ObjectNumber id="totalFooter"
+								number=""
+								unit=""/>
+						</footer>
+					</Column>
+				</columns>
+				<items>
+				<ColumnListItem press="onLineItemPressed" type="Navigation" vAlign="Middle" id = "columnListId">
+					<cells>
+						
+						<Image alt="Product Image" class="sapUiSmallMarginTopBottom" decorative="false" densityAware="false" height="3rem"
+							id="productImage" src="{ob>IMAGE_OS}" width="3rem"/>
+						
+						<Text text="{ob>PRODUCT_NAME}"></Text>
+						
+						<Input change="onQuantityChanged" id="quantityInput" maxLength="3" textAlign="End" type="Number"
+							value=""/>
+						
+						<ObjectNumber emphasized="false" id="priceObjNumber" number="{ob>PRICE}"
+							unit="INR"/>
+<!-- 						<Text text="" id="subTotalObjNumber"></Text> -->
+					</cells>
+				</ColumnListItem>
+				</items>
+			</Table>
+						</IconTabFilter>
+						<IconTabSeparator icon="sap-icon://open-command-field" />
+<!-- 						<IconTabFilter icon="sap-icon://money-bills" -->
+<!-- 							iconColor="Neutral" design="Horizontal" text="Cash on delivery" -->
+<!-- 							key="Payment type"> -->
+<!-- 							<Text class="sapUiSmallMarginBottom" -->
+<!-- 								text="We accept all major credit cards. No extra cost will be charged when paying with a credit card. Bank transfer and Cash on delivery are only possible for inland deliveries. A service charge of INR 50 will be charged for these types of deliveries. Be aware, that for Bank transfers, the shipping will start on the day after the payment is received." /> -->
+<!-- 							<HBox alignItems="Center" justifyContent="Center" width="100%"> -->
+<!-- 								<SegmentedButton select="setPaymentMethod" id="paymentMethodSelection" -->
+<!-- 									selectedKey="{/selectedPayment}"> -->
+<!-- 									<items> -->
+<!-- 										<SegmentedButtonItem key="Credit Card" -->
+<!-- 											icon="sap-icon://credit-card" text="Credit card" press="Onclick1" /> -->
+<!-- 										<SegmentedButtonItem key="Bank Transfer" -->
+<!-- 											icon="sap-icon://official-service" text="Bank transfer" -->
+<!-- 											press="Onclick2" /> -->
+<!-- 										<SegmentedButtonItem key="Cash on Delivery" -->
+<!-- 											icon="sap-icon://money-bills" text="Cash on delivery" press="Onclick3" /> -->
+<!-- 									</items> -->
+<!-- 								</SegmentedButton> -->
+
+<!-- 							</HBox> -->
+<!-- 							<Panel id="panel1" visible="false"> -->
+<!-- 								<headerToolbar> -->
+<!-- 									<Toolbar height="2rem"> -->
+<!-- 										<Title level="H3" text="Credit Card payment" /> -->
+<!-- 										<ToolbarSpacer /> -->
+<!-- 										<Button icon="sap-icon://credit-card" /> -->
+<!-- 									</Toolbar> -->
+<!-- 								</headerToolbar> -->
+<!-- 								<f:SimpleForm minWidth="1024" editable="false" -->
+<!-- 									layout="ResponsiveGridLayout"> -->
+<!-- 									<f:content> -->
+<!-- 										<Label text="Name on card" /> -->
+<!-- 										<Input value="" required="true"></Input> -->
+
+<!-- 										<Label text="Card number" /> -->
+<!-- 										<Input value="" required="true"></Input> -->
+<!-- 										<Label text="Security code" /> -->
+<!-- 										<Input value="" required="true"></Input> -->
+<!-- 										<Label text="Expiration date" /> -->
+<!-- 										<Input value="" required="true"></Input> -->
+<!-- 										<Link press="_navBackToCreditCard" text="Edit" /> -->
+<!-- 									</f:content> -->
+<!-- 								</f:SimpleForm> -->
+<!-- 							</Panel> -->
+<!-- 							<Panel id="panel2" visible="false"> -->
+<!-- 								<headerToolbar> -->
+<!-- 									<Toolbar height="2rem"> -->
+<!-- 										<Title level="H3" text="Beneficial bank info" /> -->
+<!-- 										<ToolbarSpacer /> -->
+<!-- 										<Button icon="sap-icon://official-service" /> -->
+<!-- 									</Toolbar> -->
+<!-- 								</headerToolbar> -->
+<!-- 								<layout:Grid defaultSpan="L6 M6 S10" hSpacing="2"> -->
+<!-- 									<Label text="Beneficiary Name" design="bold" /> -->
+<!-- 									<Label text="Singapore Hardware e-Commerce LTD" /> -->
+<!-- 									<Label text="Beneficiary Bank" design="bold" /> -->
+<!-- 									<Label text="CITY BANK, SINGAPORE BRANCH" /> -->
+<!-- 									<Label text="Beneficiary Account Number" design="bold" /> -->
+<!-- 									<Label text="06110702027218" /> -->
+<!-- 									<Label text="Bank Phone Number" design="bold" /> -->
+<!-- 									<Label text="+65-6224-2622" /> -->
+<!-- 									<Label text="Bank Email Address" design="bold" /> -->
+<!-- 									<Label text="customerservice@citybank.com" /> -->
+<!-- 								</layout:Grid> -->
+<!-- 							</Panel> -->
+<!-- 							<Panel id="panel3" visible="false"> -->
+<!-- 								<f:SimpleForm id="SimpleForm" editable="true" -->
+<!-- 									layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" -->
+<!-- 									labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" -->
+<!-- 									emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" -->
+<!-- 									columnsXL="2" columnsL="1" columnsM="1" -->
+<!-- 									singleContainerFullSize="false"> -->
+<!-- 									<f:content> -->
+<!-- 										<Toolbar height="2rem"> -->
+<!-- 											<Title text="Cash on delivery info" level="H3" -->
+<!-- 												titleStyle="H5" /> -->
+<!-- 											<ToolbarSpacer /> -->
+<!-- 											<Button icon="sap-icon://money-bills" /> -->
+<!-- 										</Toolbar> -->
+<!-- 										<Label text="Name" /> -->
+<!-- 										<Input value="" required="true" /> -->
+<!-- 										<Label text="Email_Id" /> -->
+<!-- 										<Input value="" required="true" /> -->
+<!-- 										<Label text="Contact_no" /> -->
+<!-- 										<Input value="" /> -->
+<!-- 									</f:content> -->
+<!-- 								</f:SimpleForm> -->
+<!-- 							</Panel> -->
+
+<!-- 						</IconTabFilter> -->
+<!-- 						<IconTabSeparator icon="sap-icon://open-command-field" /> -->
+						<IconTabFilter icon="sap-icon://official-service"
+							iconColor="Negative" design="Horizontal" text="Billing address"
+							key="Address">
+							
+							<f:SimpleForm id="SimpleFormToolbar2" editable="true"
+								layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3"
+								labelSpanM="4" labelSpanS="12" adjustLabelSpan="false"
+								emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+								columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+								<f:content> 
+									<Toolbar>
+										<Title text="Billing Address" level="H5" titleStyle="H5" />
+										<ToolbarSpacer />
+										<Button icon="sap-icon://official-service" />
+									</Toolbar>
+									<Label text="Name" />
+									<Input value="" required="true" id="name"/>
+									<Label text="Email_Id" />
+									<Input value="" required="true" id="email"/>
+									<Label text="Address" />
+									<Input value="" required="true" id="address"/>
+									<Label text="Country" />
+									<Select id="country" selectedKey="Country">
+										<items>
+											<core:Item text="India" key="India" />
+											<core:Item text="France" key="France" />
+											<core:Item text="Australia" key="Australia" />
+											<core:Item text="England" key="England" />
+											<core:Item text="Germany" key="Germany" />
+											<core:Item text="Italy" key="USA" />
+											<core:Item text="Brazil" key="Brazil" />
+											<core:Item text="Japan" key="Japan" />
+											<core:Item text="China" key="China" />
+											<core:Item text="Sri Lanka" key="Sri Lanka" />
+										</items>
+									</Select>
+									<Label text="Contact_no" />
+									<Input value="" id="mob"/>
+									<Text width="10px" />
+									<HBox>
+										<Button text="Buy Now" icon="sap-icon://download" type="Accept"
+											press="onBill"></Button>
+									</HBox>
+								</f:content>
+							</f:SimpleForm>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</Panel>
+		</content>
+	</Page>
+</core:View>

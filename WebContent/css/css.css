@@ -1,0 +1,32 @@
+
+/* override background color for non-accessibility themes */
+html:not(.sapUiTheme-sap_hcb):not(.sapUiTheme-sap_hcw) .customBackground section {
+	background-color: #bad0e3;
+}
+
+.welcomePrice  {
+	width: 100%;
+	padding: 0;
+	border-bottom-width: 0;
+}
+.welcomeText {
+	display: block;
+	position: relative;
+
+	padding-left: 3rem;
+	background-color: rgb(255,255,255);
+	padding: 1rem;
+	font-size: 1.5rem;
+	font-color:rgb(255,0,0);
+	font-weight: bold;
+}
+.sapMShellCentralBox{
+	width: 100% !important; 
+    margin-left: 0px !important; 
+    left:0 !important;
+}
+.bold{
+	font-weight:bold;
+	font-size: 21px;
+	float:right;
+}

@@ -1,0 +1,100 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog id="userf" title="Change Password">
+		<Label text="Enter Old Password"  required="true" />
+		<Input id="id1" type="Password" />
+		<Label text="Enter New Password" />
+		<Input id="id2" type="Password" />
+			<HBox>	<Button id="iderror1" icon="sap-icon://error" text="All Fields are Mandatory" visible="false" /></HBox>
+		<Button text="Show Password" id="id3" type="Transparent" press="onShow" />
+		<Button text="Save" press="onSave" />
+		<Button text="Cancel" press="onCancel" />
+	</Dialog>
+	<Dialog id="fsignin" title="Sign In" >
+			<Label text="Username" required="true" />
+		<Input id="idu" required="true" />
+		<Label text="Password" required="true" />
+		<Input id="idp" type = "Password"  />
+		<HBox>	<Button id="iderror_signin" icon="sap-icon://error" text="All Fields are Mandatory" visible="false" /></HBox>
+		<Button text="Sign In" press="onSignin" />
+		<Button text="Cancel" press="onCancel" />
+		</Dialog>
+		<Dialog id="fdelete" title="Do You Want to Delete Your Account Permanently">
+	<Label text = "Enter the Captcha" required="true"/>
+	<Panel>
+	<Image
+	src="https://www.researchgate.net/profile/Edward_Aboufadel/publication/241020629/figure/fig2/AS:298666976923655@1448219164785/Figure-3-Example-of-the-EZ-Gimpy-CAPTCHA-broken-by-Mori-and-Malik.png"
+	width="10%" height="10%" alt="Reload the Captcha" />
+	</Panel>
+	<Input id="iddelete"/>
+	<HBox>	<Button id="error_delete" icon="sap-icon://error" text="All Fields are Mandatory" visible="false" /></HBox>
+	<HBox>
+		<Button text="Yes" press="onfdelete" />
+		<Button text="No" press="onfCancel" />
+		</HBox>
+	</Dialog>
+	<Dialog id="fsignup" title="Sign Up">
+		<Label text="Username" />
+		<Input id="iduname" required="true" value=""/>
+		<Label text="Password" required="true"/>
+		<Input id="idpass" type = "Password" required="true"/>
+		<Label text="Name" required="true"/>
+		<Input id="idname"  />
+		<Label text="Mobile Number" required="true" />
+		<Input id="idmob" />
+		<Label text="Address" required="true"/>
+		<Input id="idadd" />
+		<Label text="Email ID" required="true"/>
+		<Input id="idemail" />
+		<HBox>	<Button id="iderror_signup" icon="sap-icon://error" text="All Fields are Mandatory" visible="false" /></HBox>
+		<Button type="submit" text="Sign Up" press="onSignup" />
+		<Button text="Cancel" press="onCancel2" />
+	</Dialog>
+<Dialog  id="fcat" title="Product Details">
+<HBox>
+<VBox>
+			<Image src="{t4>/results/0/IMAGE_OS}" width="400px" height="400px">
+				<layoutData>
+					<l:GridData span="L2 M2 S4" />
+				</layoutData>
+			</Image>
+			<ObjectHeader backgroundDesign="Translucent" id="pd_header"
+				number="{t4>/results/0/PRICE}" numberUnit="INR" responsive="true"
+				showMarkers="true" title="{/results/0/PRODUCT_NAME}">
+			</ObjectHeader>
+			</VBox>
+			<VBox class="sapUiTinyMarginBeginEnd">
+			<f:SimpleForm class="sapUiResponsiveMargin sapUiForceWidthAuto"
+				columnsL="2" columnsM="2" editable="false" emptySpanL="0"
+				emptySpanM="0" id="productDetailForm" labelSpanL="4" labelSpanM="4"
+				layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024"
+				title="{i18n>detail.productDetails}">
+				<f:content>
+					<core:Title id="generalDataTitle" />
+					<Label id="descriptionLbl" text="Product Name:" />
+					<Text id="descriptionTxt" text="{t4>/results/0/PRODUCT_NAME}" />
+					<Label id="supplierLbl" text="Brand:" />
+					<Text id="descriptionBrand" text="{t4>/results/0/BRAND}" />
+</f:content>
+<f:content>
+					<Label id="quantityUnitLbl" text="In Stock:" />
+					<Text id="quantityUnitTxt" text="{t4>/results/0/QUANTITY}" />
+					<Label id="quantityUnitSizeLbl" text="Size:" />
+					<Text id="quantityUnitSize" text="{t4>/results/0/OS_SIZE}" />
+					<Label id="quantityUnitColorLbl" text="Color:" />
+					<Text id="quantityUnitColor" text="{t4>/results/0/COLOR}" />
+<!-- <Button enabled="true" id="btnCheckOut2" press="showText2"  text="Add to Cart" type="Emphasized"/> -->
+				</f:content>
+			</f:SimpleForm>
+ 					</VBox>
+ 					</HBox>
+ 					
+<endButton>
+ 				
+ 				<Button enabled="true" id="btnCheckcancel" press="showCancel"  text="Close" />
+</endButton>
+</Dialog>
+</core:FragmentDefinition>

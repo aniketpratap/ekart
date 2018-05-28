@@ -1,0 +1,58 @@
+<mvc:View controllerName="ekart.controller.shoe_cat" xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page id="productDetailsPage" showNavButton="true" navButtonPress="onNavBack" title="Product Details">
+		<headerContent>
+			<Button icon="sap-icon://cart" id="btnProductHeader" press="onShoppingCartPressed"
+				text="{TotalQuantity}" tooltip="Items in cart" />
+		</headerContent>
+		<content>
+		<HBox class="sapUiTinyMarginBeginEnd">
+		<VBox>
+			<Image src="{/results2/0/IMAGE_OS}" width="400px" height="400px">
+				<layoutData>
+					<l:GridData span="L2 M2 S4" />
+				</layoutData>
+			</Image>
+			<ObjectHeader backgroundDesign="Translucent" id="pd_header"
+				number="{/results2/0/PRICE}" numberUnit="INR" responsive="true"
+				showMarkers="true" title="{/results2/0/PRODUCT_NAME}">
+
+
+			</ObjectHeader>
+			</VBox>
+			<f:SimpleForm class="sapUiResponsiveMargin sapUiForceWidthAuto"
+				columnsL="2" columnsM="2" editable="false" emptySpanL="0"
+				emptySpanM="0" id="productDetailForm" labelSpanL="4" labelSpanM="4"
+				layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024"
+				title="{i18n>detail.productDetails}">
+				<f:content>
+					<core:Title id="generalDataTitle" text="Details" />
+<!-- 					<Label id="productIDLbl" text="Product Id:" /> -->
+					<Text id="productId" text="{/results2/0/PRODUCT_ID}" />
+					<Label id="descriptionLbl" text="Product Name:" />
+					<Text id="descriptionTxt" text="{/results2/0/PRODUCT_NAME}" />
+					<Label id="supplierLbl" text="Brand:" />
+					<Text id="descriptionBrand" text="{/results2/0/BRAND}" />
+</f:content>
+<f:content>
+<!-- 					<core:Title id="technicalDataTitle" text="Technical Details" /> -->
+					<Label id="quantityUnitLbl" text="In Stock:" />
+					<Text id="quantityUnitTxt" text="{/results2/0/QUANTITY}" />
+					<Label id="quantityUnitSizeLbl" text="Size:" />
+					<Text id="quantityUnitSize" text="{/results2/0/OS_SIZE}" />
+					<Label id="quantityUnitColorLbl" text="Color:" />
+					<Text id="quantityUnitColor" text="{/results2/0/COLOR}" />
+
+				</f:content>
+			</f:SimpleForm>
+ 					</HBox>
+<!--  					<footer> -->
+<Toolbar>
+ 				<Button enabled="true" id="btnCheckOut" press="showText"  text="Add to Cart" type="Emphasized"/>
+<!--  				</footer> -->
+</Toolbar>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,157 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:t="sap.ui.table"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="ekart.controller.os" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Shopping Website" id="page" navButtonPress="onNavButtonPress" enableScrolling="true">
+		<headerContent>
+			<core:Fragment fragmentName="ekart.sharedblocks.userf" type="XML" />
+			<Button id= "idsignin" text="Sign In" press="onPress1" />
+			<Button id= "idsignup" text="Sign Up" press="onPress2" />
+			<Button icon="sap-icon://customer" Align="Right" text="GUEST" id="idProfileButton"
+				type="Transparent" press="onPressUser">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow" />
+				</layoutData>
+			</Button>
+			<Button icon="sap-icon://cart" tooltip="cart" press="onCartButtonPress">
+			</Button>
+			<Text text="" id="idText"></Text>
+		</headerContent>
+		<content>
+	</content>
+		<content>
+			<l:BlockLayout>
+				<l:BlockLayoutRow>
+					<l:BlockLayoutCell class="sapUiNoContentPadding">
+					
+						<Carousel id="idCarousel" loop="true" class="sapUiContentPadding" data-ride="carousel" height="500px">
+							<pages>
+							
+								<Image
+									src="shoe3.png"
+									width="100%" height="100%" alt="Example picture of spotlight" />
+								<Image src="sale.jpg" width="100%" height="100%" />
+ 
+					
+
+								<Image
+									src="shoes2.png"
+									width="100%" height="100%" alt="Example picture of spotlight" />
+
+								<Image
+									src="shoes.png"
+									width="100%" height="100%" alt="Example picture of screw" />
+							</pages>
+						</Carousel>
+						<Title tooltip="Welcome to our Shop" text="Welcome to ekart.com"
+							class="welcomeText" />
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+			</l:BlockLayout>
+		</content>
+		<SplitApp id="SplitAppDemo" initialDetail="detail"
+			initialMaster="master2">
+			<detailPages>
+				<Page id="detail"  title="Product Details" class="sapUiStdPage" enableScrolling = "true">
+				<headerContent>
+				 		<FlexBox alignItems="Right" alignContent="Center" justifyContent="End" class="sorting">		
+ 		<!-- <Button icon="sap-icon://sort" press="onPress" /> -->
+ 		 <Select change="SortTable" id="Sort_by" selectedKey="Sort" textAlign="Center">
+					<items>
+					<core:Item text="Sort By" key="Sort" enabled="false"/>
+					
+						<core:Item text="Price(Low-High)" key="PRICE" />
+						<core:Item text="Price(High-Low)" key="PRICE2" />
+						
+					</items>
+				</Select>
+				</FlexBox>
+				</headerContent>
+				<Panel>
+					<FlexBox id="promotedRow1" wrap = "Wrap" items="{/results}">
+						<VBox class="sapUiTinyMarginBeginEnd">
+							<items>
+								<Link text="{PRODUCT_NAME}" id="idd1" emphasized="true" press="onSelectProduct"
+									class="sapUiTinyMarginTopBottom">
+								</Link>
+							</items>
+							<items width="200px" height="200px">
+								<Image src="{IMAGE_OS}" press="onSelectProduct" width="200px"
+									height="200px" />
+							</items>
+							<items>
+								<FlexBox>
+									<items>
+										<Button tooltip="Add to Cart" type="Emphasized" press="showText"
+											icon="sap-icon://cart-3" enabled="{AVAILABLE}"></Button>
+									</items>
+									<items>
+										<Text width="60px"></Text>
+										<ObjectNumber class="sapUiSmallMarginBottom"
+											number="{PRICE}" unit="INR" state="Success" />
+											</items>
+								</FlexBox>
+							</items>
+						</VBox>
+					</FlexBox>
+					</Panel>
+				</Page>
+			</detailPages>
+			<masterPages>
+				<Page id="master2" title="Filter Panel">
+					<content>
+
+						<HBox>
+							<Text width="10px"></Text>
+							<l:VerticalLayout>
+								<Label text="Select Brand" design="Bold" />
+
+								<Select id="brand" class="sapUiSmallMarginBottom" items="{/results}" change="event">
+			
+									<items>
+									
+										<core:Item key="{BRAND}" text="{BRAND}" />
+									</items>
+								</Select>
+							</l:VerticalLayout>
+							
+							<Text width="20px"></Text>
+							<l:VerticalLayout>
+								<Label text="Select Color" design="Bold" />
+
+								<Select id="color" class="sapUiSmallMarginBottom" items="{Task_mod>/results}"
+									>
+									<items>
+									<core:Item text="NONE" />
+										<core:Item key="{Task_mod>COLOR}" text="{Task_mod>COLOR}" />
+									</items>
+								</Select>
+							</l:VerticalLayout>
+						</HBox>
+						<Text width="10px"></Text>
+						<l:VerticalLayout>
+							<Label text="Select Size" design="Bold" />
+
+							<Select id="size" class="sapUiSmallMarginBottom" items="{Task_mod>/results}"
+								>
+								<items>
+								<core:Item text="NONE" />
+									<core:Item key="{Task_mod>OS_SIZE}" text="{Task_mod>OS_SIZE}" />
+								</items>
+							</Select>
+						</l:VerticalLayout>
+						<VBox>
+							<HBox>
+								<Text width="100px"></Text>
+								<Button text="Filter" icon="sap-icon://add-filter" type="Emphasized"
+									press="onFilter" />
+							</HBox>
+						</VBox>
+					</content>
+				</Page>
+			</masterPages>
+		</SplitApp>
+		<content></content>
+	</Page>
+
+</core:View>

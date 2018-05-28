@@ -1,0 +1,107 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="ekart.controller.user2" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:sample="sap.uxap.sample.ObjectPageOnJSON" xmlns:goals="sap.uxap.sample.SharedBlocks.goals"
+	xmlns:personal="sap.uxap.sample.SharedBlocks.personal"
+	xmlns:employment="sap.uxap.sample.SharedBlocks.employment" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:uxap="sap.uxap">
+	<Page title="Customer Profile Page" showNavButton="true" navButtonPress="onNavBack" >
+		<headerContent>
+<!-- 			<Button icon="sap-icon://customer" Align="Right" text="{t>/results/0/USERNAME}" -->
+<!-- 				type="Transparent" press="handleUserNamePress"> -->
+<!-- 			</Button> -->
+		</headerContent>
+		<content>
+			<core:Fragment fragmentName="ekart.sharedblocks.userf" type="XML" />
+			<uxap:ObjectPageHeader objectTitle="Hello "/>
+			<uxap:ObjectPageHeader
+				objectImageURI="http://www.clker.com/cliparts/b/1/f/a/1195445301811339265dagobert83_female_user_icon.svg.med.png"
+				objectTitle="{t>/results/0/NAME}" objectImageShape="Circle" objectImageAlt="User Image"
+				objectPageHeaderActionButton="Button" press="onPassword"
+				isObjectIconAlwaysVisible="true" isObjectTitleAlwaysVisible="true"
+				isObjectPageHeaderActionButtonAlwaysVisible="true"
+				isPressAlwaysVisible="true">
+				<Button text="Change Password" press="onCP" />
+				<uxap:actions>
+					<uxap:ObjectPageHeaderActionButton
+						text="Order History" hideIcon="true" hideText="false" type="Emphasized"
+						press="checkHistory" />
+					<uxap:ObjectPageHeaderActionButton
+						text="Edit Profile" id="idProfile" hideIcon="true" hideText="false"
+						type="Emphasized" press="toggleEdit" />
+				</uxap:actions>
+			</uxap:ObjectPageHeader>
+		</content>
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="FormToolbar" editable="true" ariaLabelledBy="Title1">
+				<f:toolbar>
+					<Toolbar id="TB1">
+						<Title id="Title1" text="Address" level="H4" titleStyle="H4" />
+					</Toolbar>
+				</f:toolbar>
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4"
+						labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false"
+						emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+						columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" />
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer ariaLabelledBy="Title2">
+						<f:toolbar>
+							<Toolbar>
+								<Title id="Title2" text="Postal Address" level="H5"
+									titleStyle="H5" />
+							</Toolbar>
+						</f:toolbar>
+						<f:formElements>
+							<f:FormElement label="Name">
+								<f:fields>
+									<Input value="{t>/results/0/NAME}" id="idname2"
+										editable="{editModel>/editable}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Address">
+								<f:fields>
+								
+									<TextArea value="{t>/results/0/ADDRESS}" id= "idadd2" editable="{editModel>/editable}">
+									
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4" />
+										</layoutData>
+									</TextArea>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer ariaLabelledBy="Title3">
+						<f:toolbar>
+							<Toolbar>
+								<Title id="Title3" text="Contact Details" level="H5"
+									titleStyle="H5" />
+							</Toolbar>
+						</f:toolbar>
+						<f:formElements>
+							<f:FormElement label="Email ID">
+								<f:fields>
+									<Input value="{t>/results/0/EMAIL_ID}" type="Url" id="idemail2"
+										editable="{editModel>/editable}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Mobile no.">
+								<f:fields>
+									<Input value="{t>/results/0/CONTACT_NO}" type="Number" id="idmob2" editable="{editModel>/editable}" />
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<footer>
+			<OverflowToolbar id="ProfileFooter">
+				<ToolbarSpacer/>
+				<Button enabled="true" id="btnCheckOut" press="ondelete" text="Delete Your Account" type="Emphasized"/>
+			</OverflowToolbar>
+		</footer>
+		<Input value="{t>/results/0/PASSWORD}" id="idpasscheck"	visible= "false"/>
+	</Page>
+</core:View>

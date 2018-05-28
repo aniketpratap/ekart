@@ -1,0 +1,167 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="ekart.controller.Admin" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:sample="sap.uxap.sample.ObjectPageOnJSON" xmlns:goals="sap.uxap.sample.SharedBlocks.goals"
+	xmlns:personal="sap.uxap.sample.SharedBlocks.personal"
+	xmlns:employment="sap.uxap.sample.SharedBlocks.employment" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:uxap="sap.uxap">
+	<Page id="header" title = "Online Shopping" showNavButton="true" navButtonPress="onNavBack"> 
+	<SplitApp id="SplitApp"   initialMaster="master" orientationChange="onOrientationChange">
+	<!-- <Page title="SPLIT APP"> -->
+		<detailPages>
+			<Page id="detail1" title="CUSTOMERS" class="sapUiStdPage">
+			<content>
+			<VBox fitContainer="true">
+		<smartTable:SmartTable id="LineItemsSmartTable" entitySet="customerSet" 
+		initiallyVisibleFields= "CUSTOMER_ID,NAME,PASSWORD,EMAIL_ID,ADDRESS,CONTACT_NO" 
+		tableType="ResponsiveTable" 
+		useExportToExcel="true"
+		useTablePersonalisation="true" 
+		header="Updated Entries"
+									showRowCount="true" enableAutoBinding="true"
+									class="sapUiResponsiveContentPadding" >
+				<!-- layout data used to make the table growing but the filter bar fixed -->
+				<smartTable:layoutData>
+						<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+			<Table class="sapUiSizeCompact" >
+  
+      <items>
+        <ColumnListItem  type="Navigation" press="onPress2">
+          <cells>
+            
+
+
+
+            
+          </cells>
+        </ColumnListItem>
+	 </items>
+   </Table> 
+		</VBox>
+	</content>
+    </Page>
+			<Page id="detail2" title="PRODUCTS" class="sapUiStdPage" >
+				<content>
+				<VBox fitContainer="true">
+		<smartTable:SmartTable id="LineItemsSmartTable2" entitySet="productSet" 
+		initiallyVisibleFields= "PRODUCT_ID,CATEGORY_ID,PRODUCT_NAME,BRAND,COLOR,OS_SIZE,PRICE,QUANTITY,IMAGE_OS" 
+		tableType="ResponsiveTable" 
+		useExportToExcel="true"
+		useTablePersonalisation="true" 
+		header="Updated Entries"
+									showRowCount="true" enableAutoBinding="true"
+									class="sapUiResponsiveContentPadding" >
+				<!-- layout data used to make the table growing but the filter bar fixed -->
+				<smartTable:layoutData>
+						<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+			<Table class="sapUiSizeCompact" >
+  
+      <items>
+        <ColumnListItem  type="Navigation" press="onPress2">
+          <cells>
+            
+
+
+
+            
+          </cells>
+        </ColumnListItem>
+	 </items>
+   </Table> 
+		</VBox>
+	</content>
+			</Page>
+			<Page id="detail3" title="PRODUCT CATEGORY" class="sapUiStdPage" >
+ 				<content>
+				<VBox fitContainer="true">
+		<smartTable:SmartTable id="LineItemsSmartTable3" entitySet="product_catSet" 
+		initiallyVisibleFields= "CATEGORY_ID,CATEGORY_NAME,CATEGORY_DESC" 
+		tableType="ResponsiveTable" 
+		useExportToExcel="true"
+		useTablePersonalisation="true" 
+		header="Updated Entries"
+									showRowCount="true" enableAutoBinding="true"
+									class="sapUiResponsiveContentPadding" >
+				<!-- layout data used to make the table growing but the filter bar fixed -->
+				<smartTable:layoutData>
+						<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+			<Table class="sapUiSizeCompact" >
+  
+      <items>
+        <ColumnListItem  type="Navigation" press="onPress2">
+          <cells>
+            
+
+
+
+            
+          </cells>
+        </ColumnListItem>
+	 </items>
+   </Table> 
+		</VBox>
+				</content>
+			</Page>
+			<Page id="detail4" title="BILLS" class="sapUiStdPage">
+			<content>
+			<VBox fitContainer="true">
+		<smartTable:SmartTable id="LineItemsSmartTabl4e" entitySet="billSet" 
+		initiallyVisibleFields= "BILL_ID,PRODUCT_ID,CUSTOMER_ID,TOTAL_PRICE,QUANTITY,BILLING_ADDRESS" 
+		tableType="ResponsiveTable" 
+		useExportToExcel="true"
+		useTablePersonalisation="true" 
+		header="Updated Entries"
+									showRowCount="true" enableAutoBinding="true"
+									class="sapUiResponsiveContentPadding" >
+				<!-- layout data used to make the table growing but the filter bar fixed -->
+				<smartTable:layoutData>
+						<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+			<Table class="sapUiSizeCompact" >
+  
+      <items>
+        <ColumnListItem  type="Navigation" press="onPress2">
+          <cells>
+            
+
+
+
+            
+          </cells>
+        </ColumnListItem>
+	 </items>
+   </Table> 
+		</VBox>
+	</content>
+    </Page>
+		</detailPages>
+		
+		<masterPages>
+			<Page id="master" title="ADMIN CONTROL" class="sapUiStdPage" >
+			<Toolbar>
+<!-- 				<SearchField search = "searchfield" value = "Enter Order no." /> -->
+			</Toolbar> 
+				<content>
+					<List  itemPress="onListItemPress">
+						<items>
+							<StandardListItem title="CUSTOMERS" type="Active" custom:to="detail1" press="onPress1"/>
+							<StandardListItem title="PRODUCTS" type="Active" custom:to="detail2" press="onPress2"/>
+							<StandardListItem title="PRODUCT CATEGORY" type="Active" custom:to="detail3" press="onPress3"/>
+							<StandardListItem title="BILLS" type="Active" custom:to="detail4" press="onPress4"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+		</masterPages>
+	</SplitApp>
+	</Page>
+	</core:View>
+	

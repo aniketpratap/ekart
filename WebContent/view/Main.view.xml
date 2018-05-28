@@ -1,0 +1,109 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="ekart.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+		xmlns:uxap="sap.uxap">
+	<Page title="INVOICE" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+		<uxap:ObjectPageHeader
+				objectImageURI="https://cdn3.iconfinder.com/data/icons/rounded-monosign/142/invoice-512.png"
+				objectTitle="THANK YOU FOR SHOPPING WITH US!!!" objectImageShape="Square" objectImageAlt="User Image"
+				objectPageHeaderActionButton="Button" press="onPassword"
+				isObjectIconAlwaysVisible="true" isObjectTitleAlwaysVisible="true"
+				isObjectPageHeaderActionButtonAlwaysVisible="true"
+				isPressAlwaysVisible="true">
+				<uxap:actions>
+					<uxap:ObjectPageHeaderActionButton
+						text="Print Your Invoice" hideIcon="true" hideText="false" type="Emphasized"
+						press="printTriggered" />
+					
+				</uxap:actions>
+			</uxap:ObjectPageHeader>
+	
+<VBox class="sapUiSmallMargin">
+			<f:Form id="FormToolbar" editable="true" ariaLabelledBy="Title1">
+				<f:toolbar>
+					<Toolbar id="TB1">
+						<Title id="Title1" text="Billing Details" level="H4" titleStyle="H4" />
+					</Toolbar>
+				</f:toolbar>
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4"
+						labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false"
+						emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0"
+						columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" />
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer ariaLabelledBy="Title2">
+								<f:formElements>
+							<f:FormElement label="Invoice Number">
+								<f:fields>
+									<Input value="{t1>/results/0/BILL_ID}" id="iduname2"
+										editable= "false" />
+								</f:fields>
+							</f:FormElement>
+										<f:FormElement label="Customer Name">
+								<f:fields>
+									<Input value="" id="name2"
+										editable= "false" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Billed to:">
+								<f:fields>
+								
+									<TextArea value="{t1>/results/0/BILLING_ADDRESS}" id= "idpass2" editable="false">
+									
+										<layoutData>
+											<l:GridData span="XL2 L1 M3 S4" />
+										</layoutData>
+									</TextArea>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+								
+						
+						<f:formElements>
+							<f:FormElement label="Order Date">
+								<f:fields>
+									<Input value="" 
+										editable="false" id="date"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Mobile no.">
+								<f:fields>
+									<Input value="{tr>/CONTACT_NO}" type="Number" id="num" editable="false" />
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+								
+	 <Table id="idProductsTable"   inset="false" headerText = "Shopping Description">
+			<columns>
+				<Column>
+					<Text text="PRODUCT NAME" />
+				</Column>
+					<Column>
+					<Text text="QUANTITY" />
+				</Column>
+					<Column >
+					<Text text="TOTAL PRICE" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{pr>/PRODUCT_NAME}" />
+						<Text text="{t1>/results/0/QUANTITY}" />
+						<Text text="{t1>/results/0/TOTAL_PRICE}" />
+							
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>  
+		</content>
+	</Page>
+</core:View>
+
+	 
